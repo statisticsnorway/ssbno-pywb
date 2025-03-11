@@ -1,7 +1,7 @@
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  name: ssbno-pywb
+  name: ssbno-pywayback
   namespace: ssbno
   labels:
     team: ssbno-developers
@@ -26,10 +26,8 @@ spec:
     min: 1
 
   filesFrom:
-    - mountPath: /webarchive/collections/wayback/archive
-      persistentVolumeClaim: pvc-for-ssbno-archive  
-    - mountPath: /webarchive/collections/wayback/indexes
-      persistentVolumeClaim: pvc-for-ssbno-archive  
+  - mountPath: /webarchive/collections/wayback/archive
+    persistentVolumeClaim: pvc-for-ssbno-archive  
   
   resources:
     limits:
