@@ -1,4 +1,4 @@
-ARG PYTHON=python:3.10
+ARG PYTHON=python:3.11
 FROM $PYTHON
 
 RUN groupadd -g 1001 archivist && useradd -m -u 1001 -g archivist -s /bin/bash archivist
