@@ -26,8 +26,10 @@ spec:
     min: 1
 
   filesFrom:
-  - mountPath: /webarchive/collections/wayback/archive
-    persistentVolumeClaim: pvc-for-ssbno-archive  
+    - mountPath: /webarchive/collections/wayback/archive
+      persistentVolumeClaim: pvc-for-ssbno-archive  
+    - mountPath: /webarchive/collections/wayback/indexes
+      persistentVolumeClaim: pvc-for-ssbno-archive  
   
   resources:
     limits:
