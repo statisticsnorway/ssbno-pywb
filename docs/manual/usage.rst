@@ -245,11 +245,11 @@ The following will run pywb in Docker directly on port 80:
 
       docker run -p 80:8080 -v /webarchive-data/:/webarchive webrecorder/pywb
 
-To run pywb in Docker behind a local nginx (as shown below), port 8081 should also be mapped:
+To run pywb in Docker behind a local nginx (as shown below), port 8080 should also be mapped:
 
 .. code:: console
 
-      docker run -p 8081:8081 -v /webarchive-data/:/webarchive webrecorder/pywb
+      docker run -p 8080:8080 -v /webarchive-data/:/webarchive webrecorder/pywb
 
 
 See :ref:`getting-started-docker` for more info on using pywb with Docker.
@@ -262,7 +262,7 @@ Sample Nginx Configuration
 
 The following nginx configuration snippet can be used to deploy pywb with uwsgi and nginx.
 
-The configuration assumes pywb is running the uwsgi protocol on port 8081, as is the default
+The configuration assumes pywb is running the uwsgi protocol on port 8080, as is the default
 when running ``uwsgi uwsgi.ini``.
 
 The ``location /static`` block allows nginx to serve static files, and is an optional optimization.
@@ -283,7 +283,7 @@ See the `Nginx Docs <https://nginx.org/en/docs/>`_ for a lot more details on how
         }
 
         location / {
-            uwsgi_pass localhost:8081;
+            uwsgi_pass localhost:8080;
 
             include uwsgi_params;
             uwsgi_param UWSGI_SCHEME $scheme;
@@ -312,7 +312,7 @@ Then, in your config, simply include:
 .. code:: apache
 
     <VirtualHost *:80>
-      ProxyPass / uwsgi://pywb:8081/
+      ProxyPass / uwsgi://pywb:8080/
     </VirtualHost>
 
 The configuration assumes uwsgi is started with ``uwsgi uwsgi.ini``
