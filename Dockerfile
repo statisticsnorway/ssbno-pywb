@@ -19,8 +19,8 @@ RUN python setup.py install \
 
 WORKDIR /webarchive
 
-ENV INIT_COLLECTION ''
-ENV VOLUME_DIR /webarchive
+ENV INIT_COLLECTION=""
+ENV VOLUME_DIR="/webarchive"
 
 COPY --chown=archivist:archivist docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
