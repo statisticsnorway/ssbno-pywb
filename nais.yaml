@@ -41,7 +41,5 @@ spec:
   logtransform: http_loglevel
   
   service:
-    port: 8080
-    protocol: http
     port: 8081
     protocol: http
