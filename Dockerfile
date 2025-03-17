@@ -41,7 +41,7 @@ ENV VOLUME_DIR="/webarchive"
 VOLUME /webarchive
 
 # Expose port
-EXPOSE 8080 8081
+EXPOSE 8080
 
 # Entrypoint
 ENTRYPOINT ["/docker-entrypoint.sh"]

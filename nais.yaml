@@ -19,7 +19,7 @@ spec:
   ingresses:
   - https://ssbno-pywayback.intern.test.ssb.no
   
-  port: 8081
+  port: 8080
   replicas:
     disableAutoScaling: true
     max: 1
@@ -41,5 +41,5 @@ spec:
   logtransform: http_loglevel
   
   service:
-    port: 8081
+    port: 8080
     protocol: http
