@@ -21,8 +21,9 @@ RUN python setup.py install
 RUN python setup.py install \
  && mv ./docker-entrypoint.sh / \
  && mkdir /uwsgi && mv ./uwsgi.ini /uwsgi/ \
- && mkdir /webarchive && mv ./config.yaml /webarchive/ \ 
+ && mkdir -p /webarchive/collections/wayback/indexes && mv ./config.yaml /webarchive/ \
  && chown -R archivist:archivist /uwsgi /webarchive /pywb
+
 
 # Switch to non-root user
 USER archivist
