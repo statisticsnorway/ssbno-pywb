@@ -18,14 +18,11 @@ COPY . ./
 RUN python setup.py install
 
 # Create directories with correct permissions
-RUN mkdir -p /uwsgi /webarchive/collections/wayback/indexes /webarchive/collections/wayback/archive \
-    && mv ./uwsgi.ini /uwsgi/ \
-    && mv ./config.yaml /webarchive/ \
-    && chown -R archivist:archivist /uwsgi /webarchive /pywb
-
-# Ensure entrypoint script has correct permissions inside the container
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN chown archivist:archivist /docker-entrypoint.sh && chmod u+x /docker-entrypoint.sh
+RUN python setup.py install \
+ && mv ./docker-entrypoint.sh / \
+ && mkdir /uwsgi && mv ./uwsgi.ini /uwsgi/ \
+ && mkdir /webarchive && mv ./config.yaml /webarchive/ \ 
+ && chown -R archivist:archivist /uwsgi /webarchive /pywb
 
 # Switch to non-root user
 USER archivist
@@ -36,6 +33,8 @@ WORKDIR /webarchive
 # Environment variables
 ENV INIT_COLLECTION=""
 ENV VOLUME_DIR="/webarchive"
+
+COPY docker-entrypoint.sh ./
 
 # Declare volumes
 VOLUME /webarchive
