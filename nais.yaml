@@ -59,11 +59,3 @@ spec:
     periodSeconds: 5
     port: 8080
     timeout: 1
-
-  startup:
-    failureThreshold: 10
-    initialDelay: 20
-    path: /
-    periodSeconds: 5
-    port: 8080
-    timeout: 1
