@@ -20,10 +20,6 @@ spec:
   - https://ssbno-pywayback.intern.test.ssb.no
   
   port: 8080
-  replicas:
-    disableAutoScaling: true
-    max: 1
-    min: 1
 
   filesFrom:
   - mountPath: /webarchive/collections/wayback/archive
