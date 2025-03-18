@@ -47,7 +47,7 @@ spec:
   liveness:
     failureThreshold: 10
     initialDelay: 20
-    path: /
+    path: /healthcheck
     periodSeconds: 5
     port: 8080
     timeout: 1
