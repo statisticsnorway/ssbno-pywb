@@ -18,12 +18,9 @@ COPY . ./
 RUN python setup.py install
 
 # Create directories with correct permissions
-RUN python setup.py install \
- && mv ./docker-entrypoint.sh / \
- && mkdir /uwsgi && mv ./uwsgi.ini /uwsgi/ \
+RUN mkdir /uwsgi && mv ./uwsgi.ini /uwsgi/ \
  && mkdir -p /webarchive/collections/wayback/indexes && mv ./config.yaml /webarchive/ \
  && chown -R archivist:archivist /uwsgi /webarchive /pywb
-
 
 # Switch to non-root user
 USER archivist
@@ -35,7 +32,8 @@ WORKDIR /webarchive
 ENV INIT_COLLECTION=""
 ENV VOLUME_DIR="/webarchive"
 
-COPY docker-entrypoint.sh ./
+# Only copy the entrypoint here!
+COPY docker-entrypoint.sh ./ 
 
 # Declare volumes
 VOLUME /webarchive
@@ -44,5 +42,5 @@ VOLUME /webarchive
 EXPOSE 8080
 
 # Entrypoint
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["./docker-entrypoint.sh"]
 CMD ["uwsgi", "/uwsgi/uwsgi.ini"]
