@@ -22,7 +22,7 @@ spec:
   port: 8080
   replicas:
     disableAutoScaling: true
-    max: 2
+    max: 1
     min: 1
 
   filesFrom:
