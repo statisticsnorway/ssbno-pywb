@@ -10,7 +10,6 @@ metadata:
     nais.io/run-as-user: "1001"
 
 spec:
-  port: 8080
   accessPolicy:
     inbound:
       rules:
@@ -20,6 +19,7 @@ spec:
   ingresses:
   - https://ssbno-pywayback.intern.test.ssb.no
   
+  port: 8080
   replicas:
     disableAutoScaling: true
     max: 1
@@ -41,6 +41,21 @@ spec:
   logtransform: http_loglevel
   
   service:
-    port: 80
-    targetPort: 8080
+    port: 8080
     protocol: http
+  
+  liveness:
+    failureThreshold: 10
+    initialDelay: 20
+    path: /healthcheck
+    periodSeconds: 5
+    port: 8080
+    timeout: 1
+
+  readiness:
+    failureThreshold: 5
+    initialDelay: 5
+    path: /healthcheck
+    periodSeconds: 5
+    port: 8080
+    timeout: 1
