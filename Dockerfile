@@ -39,7 +39,7 @@ COPY docker-entrypoint.sh ./
 VOLUME /webarchive
 
 # Expose port
-EXPOSE 80
+EXPOSE 8080
 
 # Entrypoint
 ENTRYPOINT ["./docker-entrypoint.sh"]

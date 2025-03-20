@@ -19,7 +19,7 @@ spec:
   ingresses:
   - https://ssbno-pywayback.intern.test.ssb.no
   
-  port: 80
+  port: 8080
   replicas:
     disableAutoScaling: true
     max: 1
@@ -41,7 +41,7 @@ spec:
   logtransform: http_loglevel
   
   service:
-    port: 80
+    port: 8080
     protocol: http
   
   liveness:
@@ -49,7 +49,7 @@ spec:
     initialDelay: 20
     path: /healthcheck
     periodSeconds: 5
-    port: 80
+    port: 8080
     timeout: 1
 
   readiness:
@@ -57,5 +57,5 @@ spec:
     initialDelay: 5
     path: /healthcheck
     periodSeconds: 5
-    port: 80
+    port: 8080
     timeout: 1
