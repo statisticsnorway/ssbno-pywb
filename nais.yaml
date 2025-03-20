@@ -41,7 +41,7 @@ spec:
   logtransform: http_loglevel
   
   service:
-    port: 8080
+    port: 80
     protocol: http
   
   liveness:
