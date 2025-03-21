@@ -24,9 +24,9 @@ USER archivist
 WORKDIR /webarchive
 
 # auto init collection
-ENV INIT_COLLECTION ''
-
-ENV VOLUME_DIR /webarchive
+# Environment variables
+ENV INIT_COLLECTION=""
+ENV VOLUME_DIR="/webarchive"
 
 #USER archivist
 COPY docker-entrypoint.sh ./
