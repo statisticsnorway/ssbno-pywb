@@ -25,7 +25,7 @@ use_js_obj_proxy: true
 enable_memento: true
 
 # Replay content in an iframe
-framed_replay: true
+framed_replay: false
 
 redirect_to_exact: true
 
@@ -36,3 +36,5 @@ redirect_to_exact: true
 # locales:
 #   - en
 #   - ru
+
+autoindex: 30

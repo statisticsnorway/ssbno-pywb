@@ -1,19 +1,25 @@
-ARG PYTHON=python:3.8
-
+ARG PYTHON=python:3.11
 FROM $PYTHON
+
+# Create archivist user and group
+RUN groupadd -g 1001 archivist && useradd -m -u 1001 -g archivist -s /bin/bash archivist
 
 WORKDIR /pywb
 
 COPY requirements.txt extra_requirements.txt ./
-
 RUN pip install --no-cache-dir -r requirements.txt -r extra_requirements.txt
 
 COPY . ./
 
+# Install package as root before switching to user
+# Create directories with correct permissions
 RUN python setup.py install \
- && mv ./docker-entrypoint.sh / \
  && mkdir /uwsgi && mv ./uwsgi.ini /uwsgi/ \
- && mkdir /webarchive && mv ./config.yaml /webarchive/
+ && mkdir -p /webarchive/collections/wayback/indexes && mv ./config.yaml /webarchive/ \
+ && chown -R archivist:archivist /uwsgi /webarchive /pywb
+
+# Switch to non-root user
+USER archivist
 
 WORKDIR /webarchive
 
@@ -29,6 +35,6 @@ COPY docker-entrypoint.sh ./
 VOLUME /webarchive
 EXPOSE 8080
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["./docker-entrypoint.sh"]
 CMD ["uwsgi", "/uwsgi/uwsgi.ini"]
 
