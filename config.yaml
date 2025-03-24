@@ -1,7 +1,5 @@
-# pywb config file
-# ========================================
-
-# Same changes as in old pywayback repo
 framed_replay: false
+
 autoindex: 30
+
 debug: true
