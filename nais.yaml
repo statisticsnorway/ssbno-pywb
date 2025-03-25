@@ -25,8 +25,11 @@ spec:
     max: 1
     min: 1
 
+  strategy:
+    type: Recreate
+
   filesFrom:
-  - mountPath: /webarchive/collections/wayback/archive
+  - mountPath: /webarchive/collections/wayback
     persistentVolumeClaim: pvc-for-ssbno-archive  
 
   resources:
@@ -50,7 +53,7 @@ spec:
   #   path: /healthcheck
   #   periodSeconds: 5
   #   port: 8080
-  #   timeout: 10
+  #   timeout: 1
 
   # readiness:
   #   failureThreshold: 5
@@ -58,4 +61,4 @@ spec:
   #   path: /healthcheck
   #   periodSeconds: 5
   #   port: 8080
-  #   timeout: 10
+  #   timeout: 1
