@@ -13,11 +13,11 @@ RUN pip install --no-cache-dir -r requirements.txt -r extra_requirements.txt
 
 COPY . ./
 
-# MIMIR: Added chown command
+# MIMIR: Added chown command and create folders
 RUN python setup.py install \
  && mv ./docker-entrypoint.sh / \
  && mkdir /uwsgi && mv ./uwsgi.ini /uwsgi/ \
- && mkdir /webarchive && mv ./config.yaml /webarchive/ \
+ && mkdir -p /webarchive/collections/wayback && mv ./config.yaml /webarchive/ \
  && chown -R archivist:archivist /uwsgi /webarchive /pywb
 
 # MIMIR: Switch to non-root user

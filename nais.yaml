@@ -29,7 +29,7 @@ spec:
     type: Recreate
 
   filesFrom:
-  - mountPath: /webarchive/collections/wayback/archive
+  - mountPath: /webarchive/collections/wayback
     persistentVolumeClaim: pvc-for-ssbno-archive  
 
   resources:
