@@ -26,7 +26,7 @@ USER archivist
 WORKDIR /webarchive
 
 # MIMIR: set init collection
-ENV INIT_COLLECTION='wayback'
+ENV INIT_COLLECTION 'wayback'
 
 ENV VOLUME_DIR /webarchive
 
