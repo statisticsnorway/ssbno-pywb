@@ -13,11 +13,10 @@ debug: true
   # navbar_light_buttons: true	
   # disable_printing: true	
 
-# collections:
-#     all: $all
-#     pywb:
-#         index_paths: ./ssb-archive/webarchive/collections/wayback/indexes
-#         archive_paths: ./ssb-archive/webarchive/collections/wayback/archive
+collections:
+  wayback:
+    archive_paths: /collections/wayback/archive
+    index_paths: /collections/wayback/indexes
 
 # Settings for each collection	
 # use_js_obj_proxy: true
