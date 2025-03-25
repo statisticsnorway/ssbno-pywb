@@ -48,9 +48,6 @@ nosetests.xml
 # Node
 node_modules/
 
-# archive
-archive/
-
 # git_hash
 git_hash.py
 
