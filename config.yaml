@@ -6,5 +6,5 @@ debug: true
 
 collections:
   wayback:
-    archive_paths: webarchive/collections/wayback/archive
-    index_paths: webarchive/collections/wayback/indexes
+    archive_paths: /collections/wayback/archive
+    index_paths: /collections/wayback/indexes
