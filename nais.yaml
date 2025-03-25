@@ -23,7 +23,7 @@ spec:
   replicas:
     disableAutoScaling: true
     max: 1
-    min: 1
+    min: 0
 
   filesFrom:
   - mountPath: /webarchive/collections/wayback/archive
