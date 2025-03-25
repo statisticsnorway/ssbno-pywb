@@ -1,7 +1,7 @@
 ARG PYTHON=python:3.11
 FROM $PYTHON
 
-# Create archivist user and group
+# MIMIR: Create archivist user and group
 RUN groupadd -g 1001 archivist && useradd -m -u 1001 -g archivist -s /bin/bash archivist
 
 
@@ -13,17 +13,19 @@ RUN pip install --no-cache-dir -r requirements.txt -r extra_requirements.txt
 
 COPY . ./
 
+# MIMIR: Added chown command
 RUN python setup.py install \
  && mv ./docker-entrypoint.sh / \
  && mkdir /uwsgi && mv ./uwsgi.ini /uwsgi/ \
  && mkdir /webarchive && mv ./config.yaml /webarchive/ \
  && chown -R archivist:archivist /uwsgi /webarchive /pywb
-# Switch to non-root user
+
+# MIMIR: Switch to non-root user
 USER archivist
 
 WORKDIR /webarchive
 
-# auto init collection
+# MIMIR: set init collection
 ENV INIT_COLLECTION 'wayback'
 
 ENV VOLUME_DIR /webarchive
