@@ -31,7 +31,7 @@ jobs:
       env:
         TEAM: ssbno
         CLUSTER: test 
-        RESOURCE: nais.yaml
+        RESOURCE: .nais/test.yaml
         VAR: image=${{ steps.docker-build-push.outputs.image }}
         TELEMETRY: ${{ steps.docker-build-push.outputs.telemetry }}
         DEPLOY_SERVER: deploy.ssb.cloud.nais.io:443
