@@ -1,6 +1,9 @@
 ARG PYTHON=python:3.11.11
 FROM $PYTHON
 
+# Update system packages
+RUN apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y && apt-get clean
+
 # MIMIR: Create archivist user and group
 RUN groupadd -g 1001 archivist && useradd -m -u 1001 -g archivist -s /bin/bash archivist
 
@@ -31,6 +34,7 @@ WORKDIR /webarchive
 ENV INIT_COLLECTION 'wayback'
 
 ENV VOLUME_DIR /webarchive
+ENV UWSGI_MOUNT '/=/pywb/pywb/apps/wayback.py'
 
 #USER archivist
 COPY docker-entrypoint.sh ./
