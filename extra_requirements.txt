@@ -6,4 +6,4 @@ pysocks
 lxml
 babel
 translate_toolkit
-urllib3>=2.5.0
+# urllib3>=2.5.0
