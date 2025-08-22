@@ -1,8 +1,12 @@
-ARG PYTHON=python:3.13.7
+ARG PYTHON=python:3.13.7-slim
 FROM $PYTHON
 
 # Update system packages
-RUN apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y && apt-get clean
+RUN apt-get update \
+  && apt-get upgrade -y \
+  && apt-get dist-upgrade -y \
+  && apt-get install -y --no-install-recommends build-essential \
+  && apt-get clean
 
 # MIMIR: Create archivist user and group
 RUN groupadd -g 1001 archivist && useradd -m -u 1001 -g archivist -s /bin/bash archivist
@@ -17,8 +21,7 @@ RUN pip install --upgrade --no-cache-dir -r requirements.txt -r extra_requiremen
 COPY . ./
 
 # MIMIR: Added chown command and create folders
-RUN apt -y remove --purge imagemagick \
-  && python setup.py install \
+RUN python setup.py install \
   && mv ./docker-entrypoint.sh / \
   && mkdir /uwsgi && mv ./uwsgi.ini /uwsgi/ \
   && mkdir -p /webarchive/collections/wayback && mv ./config.yaml /webarchive/ \
@@ -30,10 +33,10 @@ USER archivist
 WORKDIR /webarchive
 
 # MIMIR: set init collection
-ENV INIT_COLLECTION 'wayback'
+ENV INIT_COLLECTION='wayback'
 
-ENV VOLUME_DIR /webarchive
-ENV UWSGI_MOUNT '/=/pywb/pywb/apps/wayback.py'
+ENV VOLUME_DIR='/webarchive'
+ENV UWSGI_MOUNT='/=/pywb/pywb/apps/wayback.py'
 
 #USER archivist
 COPY docker-entrypoint.sh ./
