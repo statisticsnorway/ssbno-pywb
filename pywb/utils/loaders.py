@@ -17,10 +17,7 @@ from six.moves.urllib.parse import unquote_plus, urlsplit, urlencode
 import time
 import pkgutil
 import base64
-try:
-    import legacy_cgi as cgi
-except Exception:  # pragma: no cover
-    import cgi
+import cgi
 import re
 
 from io import open, BytesIO

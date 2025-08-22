@@ -9,10 +9,7 @@ from six import iteritems, StringIO, PY3
 from io import BytesIO
 
 import base64
-try:
-    import legacy_cgi as cgi
-except Exception:  # pragma: no cover
-    import cgi
+import cgi
 import json
 import math
 import sys
