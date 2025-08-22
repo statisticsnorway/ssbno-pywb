@@ -1,4 +1,4 @@
-ARG PYTHON=python:3.11.13
+ARG PYTHON=python:3.13.7
 FROM $PYTHON
 
 # Update system packages
