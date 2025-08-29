@@ -5,7 +5,11 @@ FROM $PYTHON
 RUN apt-get update \
   && apt-get upgrade -y \
   && apt-get dist-upgrade -y \
-  && apt-get install -y --no-install-recommends build-essential \
+  && apt-get install -y \
+    libpcre2-8-0 \
+    libpcre2-dev \
+    build-essential \
+    python3-dev \
   && apt-get clean
 
 # MIMIR: Create archivist user and group
