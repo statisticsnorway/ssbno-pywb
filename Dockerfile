@@ -1,4 +1,4 @@
-ARG PYTHON=python:3.13.7-slim
+ARG PYTHON=python:3.13.11-slim
 FROM $PYTHON
 
 # Update system packages
