@@ -15,6 +15,8 @@ greenlet==3.2.4
 webassets==2.0
 portalocker
 wsgiprox>=1.5.1
+# certauth uses X509.add_extensions(), which was removed in pyOpenSSL 26.2.
+pyOpenSSL<26.2
 fakeredis<1.0
 tldextract
 python-dateutil
