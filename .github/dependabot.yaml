@@ -9,6 +9,7 @@ updates:
     prefix: "build: "
   cooldown:
     default-days: 7
+
 - package-ecosystem: "docker"
   directory: "/"
   schedule:
@@ -17,10 +18,39 @@ updates:
     prefix: "build: "
   cooldown:
     default-days: 7
+
 - package-ecosystem: "docker-compose"
   directory: "/"
   schedule:
     interval: "weekly"
+  commit-message: 
+    prefix: "build: "
+  cooldown:
+    default-days: 7
+
+- package-ecosystem: "pip" 
+  directory: "/"
+  schedule:
+    interval: "weekly"
+  groups:
+    minor-and-patch:
+      update-types:
+        - "minor"
+        - "patch"
+  commit-message: 
+    prefix: "build: "
+  cooldown:
+    default-days: 7
+
+- package-ecosystem: "npm"
+  directory: "/pywb/vueui"
+  schedule:
+    interval: "weekly"
+  groups:
+    minor-and-patch:
+      update-types:
+        - "minor"
+        - "patch"
   commit-message: 
     prefix: "build: "
   cooldown:
